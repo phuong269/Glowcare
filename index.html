@@ -1,4 +1,9 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>GlowCare - Tư vấn mỹ phẩm dưỡng da</title>
 
     <style>
@@ -13,22 +18,43 @@
             color: #70465a;
             min-height: 100vh;
 
-            /* GIỮ NGUYÊN NỀN HỒNG VÀ HOA */
-            background-color: #fff0f5;
-            background-image:
-                linear-gradient(
-                    rgba(255, 240, 245, 0.62),
-                    rgba(255, 240, 245, 0.62)
-                ),
-                url("https://images.unsplash.com/photo-1490750967868-88aa4486c946");
+            /* NỀN MỚI GIỐNG ẢNH GLOWCARE */
+            background-color: #29171e;
 
-            background-size: cover;
+            background-image:
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(255, 105, 145, 0.35),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 60% 10%,
+                    rgba(130, 55, 75, 0.30),
+                    transparent 45%
+                ),
+                radial-gradient(
+                    rgba(255, 190, 205, 0.28) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    120deg,
+                    #29171e 0%,
+                    #382029 50%,
+                    #492631 100%
+                );
+
+            background-size:
+                auto,
+                auto,
+                22px 22px,
+                auto;
+
             background-position: center;
             background-attachment: fixed;
-            background-repeat: no-repeat;
+            background-repeat: no-repeat, no-repeat, repeat, no-repeat;
         }
 
-        /* HEADER */
+        /* Thanh đầu trang */
         header {
             background: rgba(255, 255, 255, 0.85);
             padding: 22px;
@@ -47,7 +73,7 @@
             margin-top: 8px;
         }
 
-        /* PHẦN GIỚI THIỆU */
+        /* Phần giới thiệu */
         .hero {
             text-align: center;
             padding: 90px 20px 60px;
@@ -66,7 +92,7 @@
             margin: auto;
         }
 
-        /* KHUNG NỘI DUNG */
+        /* Khung nội dung */
         .content {
             max-width: 850px;
             margin: 10px auto 60px;
@@ -88,7 +114,7 @@
             margin-bottom: 15px;
         }
 
-        /* NÚT TƯ VẤN */
+        /* Nút hướng dẫn */
         .chat-button {
             display: inline-block;
             margin-top: 15px;
@@ -106,7 +132,7 @@
             transform: translateY(-3px);
         }
 
-        /* FOOTER */
+        /* Chân trang */
         footer {
             text-align: center;
             padding: 22px;
@@ -115,62 +141,7 @@
             border-top: 1px solid #f8d5e2;
         }
 
-        /* NÚT CHATBOT TRÒN MÀU HỒNG */
-        .custom-chat-toggle {
-            position: fixed;
-            right: 35px;
-            bottom: 25px;
-            width: 76px;
-            height: 76px;
-            border: none;
-            border-radius: 50%;
-            background: #f56c9b;
-            color: white;
-            font-size: 35px;
-            cursor: pointer;
-            z-index: 99999;
-            box-shadow: 0 5px 20px rgba(180, 70, 110, 0.3);
-            transition: 0.3s;
-        }
-
-        .custom-chat-toggle:hover {
-            transform: scale(1.08);
-            background: #e95789;
-        }
-
-        /* KHUNG CHATBOT */
-        .custom-chat-box {
-            position: fixed;
-            right: 35px;
-            bottom: 115px;
-            width: 400px;
-            height: 550px;
-            background: #111111;
-            border-radius: 25px;
-            overflow: hidden;
-            z-index: 99998;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
-
-            display: none;
-        }
-
-        .custom-chat-box.active {
-            display: block;
-        }
-
-        /* TIDIO NẰM TRONG KHUNG CHAT */
-        .custom-chat-box iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* ẨN NÚT MẶC ĐỊNH CỦA TIDIO */
-        #tidio-chat {
-            z-index: 99990 !important;
-        }
-
-        /* RESPONSIVE */
+        /* Điện thoại */
         @media (max-width: 600px) {
             header h1 {
                 font-size: 28px;
@@ -188,34 +159,19 @@
                 margin: 10px 15px 40px;
                 padding: 25px 18px;
             }
-
-            .custom-chat-box {
-                width: calc(100% - 24px);
-                height: 70vh;
-                right: 12px;
-                bottom: 95px;
-            }
-
-            .custom-chat-toggle {
-                width: 62px;
-                height: 62px;
-                right: 18px;
-                bottom: 18px;
-                font-size: 28px;
-            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ĐẦU TRANG -->
+    <!-- Đầu trang -->
     <header>
         <h1>🌸 GlowCare 🌸</h1>
         <p>Chăm sóc làn da – Tỏa sáng vẻ đẹp tự nhiên</p>
     </header>
 
-    <!-- GIỚI THIỆU -->
+    <!-- Giới thiệu -->
     <section class="hero">
         <h2>Chào mừng đến với GlowCare!</h2>
 
@@ -226,7 +182,7 @@
         </p>
     </section>
 
-    <!-- NỘI DUNG CHÍNH -->
+    <!-- Nội dung chính -->
     <section class="content">
         <h3>💗 Trợ lý tư vấn chăm sóc da</h3>
 
@@ -243,66 +199,19 @@
 
         <a href="javascript:void(0)"
            class="chat-button"
-           onclick="openGlowChat()">
+           onclick="if(window.tidioChatApi) tidioChatApi.open();">
             Bắt đầu tư vấn ngay 💬
         </a>
     </section>
 
-    <!-- CHÂN TRANG -->
+    <!-- Chân trang -->
     <footer>
         © 2026 GlowCare | Chăm sóc da cùng bạn 🌷
     </footer>
 
-    <!-- KHUNG CHATBOT -->
-    <div class="custom-chat-box" id="glowChatBox">
-        <div id="tidio-chat"></div>
-    </div>
-
-    <!-- NÚT MỞ / ĐÓNG CHAT -->
-    <button class="custom-chat-toggle"
-            id="chatToggle"
-            onclick="toggleGlowChat()">
-        💬
-    </button>
-
-    <!-- TIDIO -->
-    <script src="https://code.tidio.co/cgx3vuoauh1jpvtsaz6ldjrf25nsxydy.js"
+    <!-- Chatbot Tidio: GIỮ NGUYÊN MÃ CỦA BẠN -->
+    <script src="//code.tidio.co/cgx3vuoauh1jpvtsaz6ldjrf25nsxydy.js"
             async>
-    </script>
-
-    <script>
-        function toggleGlowChat() {
-            const chatBox = document.getElementById("glowChatBox");
-            const button = document.getElementById("chatToggle");
-
-            chatBox.classList.toggle("active");
-
-            if (chatBox.classList.contains("active")) {
-                button.innerHTML = "✕";
-
-                if (window.tidioChatApi) {
-                    window.tidioChatApi.open();
-                }
-            } else {
-                button.innerHTML = "💬";
-
-                if (window.tidioChatApi) {
-                    window.tidioChatApi.close();
-                }
-            }
-        }
-
-        function openGlowChat() {
-            const chatBox = document.getElementById("glowChatBox");
-            const button = document.getElementById("chatToggle");
-
-            chatBox.classList.add("active");
-            button.innerHTML = "✕";
-
-            if (window.tidioChatApi) {
-                window.tidioChatApi.open();
-            }
-        }
     </script>
 
 </body>
