@@ -1,6 +1,6 @@
 <footer>© 2026 GlowCare</footer>
 
-<!-- Dán mã Tidio tại đây -->
+<script src="//code.tidio.co/cgx3vuoauh1jpvtsaz6ldjrf25nsxydy.js" async></script>
 
 </body>
 </html>
