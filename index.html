@@ -3,358 +3,1380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlowCare - Chăm sóc da</title>
+    <title>GlowCare ✨ - Cẩm Nang Chăm Sóc Da & Tra Cứu Hoạt Chất Khoa Học</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastel: {
+                            50: '#FFF0F3',
+                            100: '#FFE5EC',
+                            200: '#FFC2D1',
+                            300: '#FFB3C6',
+                            400: '#FF8FAB',
+                            500: '#FB6F92',
+                            accent: '#E05780',
+                            dark: '#2D2729',
+                            muted: '#6B5E62',
+                            bg: '#FFFDFE'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --green-primary: #1f422b;
-            --green-accent: #3d6e49;
-            --pink-accent: #a45c70;
-            --text-dark: #2a382e;
-            --text-muted: #4e5f52;
-            --glass-bg: rgba(255, 255, 255, 0.88);
-            --glass-border: rgba(255, 255, 255, 0.7);
-        }
-
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            color: var(--text-dark);
-            min-height: 100vh;
-
-            /* NỀN HÌNH HOA LÁ THIÊN NHIÊN SẮC NÉT */
-            background-image: 
-                linear-gradient(rgba(240, 247, 241, 0.45), rgba(240, 247, 241, 0.45)),
-                url("https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=2000&q=90");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-color: #FFFDFE;
+            color: #2D2729;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 194, 209, 0.4);
         }
 
-        .page {
-            min-height: 100vh;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+        .pink-gradient {
+            background: linear-gradient(135deg, #FFF0F3 0%, #FFE5EC 50%, #FFC2D1 100%);
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            flex-wrap: wrap;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .pink-gradient-bold {
+            background: linear-gradient(135deg, #FF8FAB 0%, #FB6F92 100%);
         }
 
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-            color: var(--green-primary);
-            letter-spacing: 0.5px;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF0F3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFB3C6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF8FAB;
         }
 
-        nav {
-            display: flex;
-            gap: 28px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--green-primary);
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--pink-accent);
-        }
-
-        .hero {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px 25px;
-            display: grid;
-            grid-template-columns: 1.3fr 0.7fr;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .hero-content {
-            padding: 40px;
-            border-radius: 28px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 15px 35px rgba(31, 66, 43, 0.12);
-        }
-
-        .label {
-            display: inline-block;
-            padding: 8px 18px;
-            border-radius: 30px;
-            background: #e3efe5;
-            color: var(--green-accent);
-            font-size: 13px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-            margin-bottom: 22px;
-        }
-
-        h1 {
-            font-size: 42px;
-            line-height: 1.25;
-            color: var(--green-primary);
-            margin-bottom: 22px;
-            font-weight: 800;
-        }
-
-        .description {
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 26px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .btn-primary {
-            background: var(--green-accent);
+        .tab-btn.active {
+            background-color: #FF8FAB;
             color: white;
-        }
-
-        .btn-secondary {
-            border: 1.5px solid var(--green-accent);
-            color: var(--green-accent);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(61, 110, 73, 0.25);
-        }
-
-        .stats {
-            display: flex;
-            gap: 35px;
-            flex-wrap: wrap;
-            margin-top: 35px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(61, 110, 73, 0.15);
-        }
-
-        .stat strong {
-            display: block;
-            font-size: 26px;
-            color: var(--green-accent);
-            font-weight: 800;
-        }
-
-        .stat span {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .feature-card {
-            padding: 35px 30px;
-            border-radius: 28px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 15px 35px rgba(31, 66, 43, 0.12);
-        }
-
-        .feature-card h2 {
-            color: var(--green-primary);
-            font-size: 22px;
-            margin-bottom: 22px;
-            font-weight: 700;
-        }
-
-        .feature {
-            padding: 18px;
-            margin-bottom: 16px;
-            border-radius: 18px;
-            background: rgba(237, 245, 238, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            transition: transform 0.3s ease;
-        }
-
-        .feature:hover {
-            transform: translateX(5px);
-            background: rgba(237, 245, 238, 0.98);
-        }
-
-        .feature h3 {
-            color: var(--green-accent);
-            font-size: 16px;
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .feature p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: var(--green-primary);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid var(--glass-border);
-            margin-top: 40px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                justify-content: center;
-            }
-
-            nav {
-                justify-content: center;
-                gap: 15px;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-                margin: 20px auto;
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 32px;
-            }
-
-            .hero-content {
-                padding: 25px;
-            }
+            box-shadow: 0 4px 12px rgba(255, 143, 171, 0.35);
         }
     </style>
 </head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-pastel-300 selection:text-pastel-dark">
 
-<body>
-<div class="page">
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 glass-card border-b border-pastel-200/50 transition-all duration-300 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-full pink-gradient-bold flex items-center justify-center text-white text-xl shadow-md group-hover:scale-105 transition-transform">
+                    ✨
+                </div>
+                <div>
+                    <span class="font-serif text-2xl font-bold tracking-tight text-pastel-dark">Glow<span class="text-pastel-accent">Care</span></span>
+                    <span class="block text-[10px] tracking-widest text-pastel-muted uppercase font-semibold">Skincare Science</span>
+                </div>
+            </a>
 
-    <header>
-        <div class="logo">🌸 GlowCare 🌸</div>
+            <!-- Quick Navigation -->
+            <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium">
+                <a href="#skin-quiz" class="px-3 py-2 rounded-full hover:bg-pastel-100 text-pastel-dark transition-colors">Test Da</a>
+                <a href="#skin-types" class="px-3 py-2 rounded-full hover:bg-pastel-100 text-pastel-dark transition-colors">Phân Loại Da</a>
+                <a href="#ingredients" class="px-3 py-2 rounded-full hover:bg-pastel-100 text-pastel-dark transition-colors">Hoạt Chất</a>
+                <a href="#conflict-checker" class="px-3 py-2 rounded-full hover:bg-pastel-100 text-pastel-dark transition-colors font-semibold text-pastel-accent"><i class="fa-solid fa-flask-vial mr-1"></i> Check Mix Active</a>
+                <a href="#routines" class="px-3 py-2 rounded-full hover:bg-pastel-100 text-pastel-dark transition-colors">Routine Chuẩn</a>
+                <a href="#products" class="px-3 py-2 rounded-full hover:bg-pastel-100 text-pastel-dark transition-colors">Sản Phẩm</a>
+            </nav>
 
-        <nav>
-            <a href="#">Trang chủ</a>
-            <a href="#">Chăm sóc da</a>
-            <a href="#">Kiến thức</a>
-            <a href="#">Liên hệ</a>
-        </nav>
+            <!-- Search Quick Button & Action -->
+            <div class="flex items-center gap-3">
+                <button onclick="scrollToQuiz()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-full pink-gradient-bold text-white text-sm font-semibold shadow-md hover:opacity-95 hover:shadow-lg transition-all hover:-translate-y-0.5">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Phân Tích Da
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl bg-pastel-100 text-pastel-dark hover:bg-pastel-200">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-pastel-200 bg-white/95 px-4 pt-3 pb-6 space-y-2 text-sm font-medium shadow-lg">
+            <a href="#skin-quiz" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-pastel-100">✨ Bài Test Loại Da</a>
+            <a href="#skin-types" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-pastel-100">🌸 Phân Loại Da</a>
+            <a href="#ingredients" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-pastel-100">🧪 Thư Viện Hoạt Chất</a>
+            <a href="#conflict-checker" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg bg-pastel-100 text-pastel-accent font-semibold">⚡ Check Kết Hợp Active</a>
+            <a href="#routines" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-pastel-100">📋 Quy Trình Routine</a>
+            <a href="#products" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-pastel-100">🧴 Tra Cứu Sản Phẩm</a>
+            <a href="#safety" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-pastel-100">🛡️ An Toàn & Kích Ứng</a>
+        </div>
     </header>
 
-    <main class="hero">
-
-        <section class="hero-content">
-            <div class="label">CHĂM SÓC DA KHOA HỌC</div>
-
-            <h1>
-                Thấu Hiểu Làn Da,<br>
-                Rạng Rỡ Từng Tế Bào
-            </h1>
-
-            <p class="description">
-                GlowCare đồng hành cùng bạn trên hành trình chăm sóc
-                và nuôi dưỡng làn da khỏe đẹp. Khám phá đặc điểm làn da,
-                lựa chọn sản phẩm phù hợp và xây dựng chu trình chăm sóc
-                da khoa học.
-            </p>
-
-            <div class="buttons">
-                <a href="#" class="btn btn-primary">
-                    Test Loại Da Ngay
-                </a>
-
-                <a href="#" class="btn btn-secondary">
-                    Kiểm Tra Mix Active
-                </a>
-            </div>
-
-            <div class="stats">
-                <div class="stat">
-                    <strong>100%</strong>
-                    <span>Quan tâm làn da</span>
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden pt-12 pb-20 pink-gradient">
+        <div class="absolute inset-0 bg-[radial-gradient(#FFB3C6_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-pastel-300 text-pastel-accent text-xs sm:text-sm font-semibold shadow-sm">
+                        <span class="flex h-2 w-2 rounded-full bg-pastel-500 animate-ping"></span>
+                        Cẩm Nang Chăm Sóc Da Chuẩn Khoa Học 2026
+                    </div>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-pastel-dark leading-[1.15]">
+                        Thấu Hiểu Làn Da,<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-pastel-accent via-pastel-500 to-rose-400">Rạng Rỡ Từng Tế Bào</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-pastel-muted max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Tra cứu hoạt chất, phối hợp treatment an toàn, xây dựng quy trình skincare cá nhân hóa và chọn sản phẩm phù hợp nhất cho làn da của bạn.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#skin-quiz" class="px-6 py-3.5 rounded-full pink-gradient-bold text-white font-semibold shadow-lg hover:shadow-xl hover:opacity-95 transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                            <i class="fa-solid fa-sparkles"></i> Test Loại Da Ngay
+                        </a>
+                        <a href="#conflict-checker" class="px-6 py-3.5 rounded-full bg-white text-pastel-dark border border-pastel-300 font-semibold shadow-sm hover:bg-pastel-50 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-vial-circle-check text-pastel-accent"></i> Kiểm Tra Mix Active
+                        </a>
+                    </div>
+                    
+                    <!-- Stats Quick Badges -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-pastel-200/80 max-w-lg mx-auto lg:mx-0 text-center">
+                        <div>
+                            <div class="font-serif font-bold text-2xl text-pastel-accent">100%</div>
+                            <div class="text-xs text-pastel-muted font-medium">Chuẩn Khoa Học</div>
+                        </div>
+                        <div>
+                            <div class="font-serif font-bold text-2xl text-pastel-accent">12+</div>
+                            <div class="text-xs text-pastel-muted font-medium">Hoạt Chất Chuẩn</div>
+                        </div>
+                        <div>
+                            <div class="font-serif font-bold text-2xl text-pastel-accent">An Toàn</div>
+                            <div class="text-xs text-pastel-muted font-medium">Tránh Kích Ứng</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="stat">
-                    <strong>24/7</strong>
-                    <span>Đồng hành cùng bạn</span>
+                <!-- Hero Graphic / Cards Preview -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Decorative Backlight -->
+                        <div class="absolute -inset-2 bg-gradient-to-r from-pastel-300 to-pastel-400 rounded-3xl blur-2xl opacity-50"></div>
+                        
+                        <div class="relative glass-card rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
+                            <div class="flex items-center justify-between pb-4 border-b border-pastel-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-2xl bg-pastel-100 flex items-center justify-center text-pastel-accent font-bold">
+                                        <i class="fa-solid fa-heart-pulse"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-sm text-pastel-dark">Chẩn Đoán Nhanh</h3>
+                                        <p class="text-xs text-pastel-muted">Tình trạng da hôm nay?</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold">Tối Ưu</span>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="p-3.5 rounded-2xl bg-pastel-50 border border-pastel-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-white flex items-center justify-center text-pastel-accent text-sm shadow-sm">💧</span>
+                                        <span class="text-xs sm:text-sm font-medium">Cần Cấp Ẩm Đa Tầng</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-pastel-accent">Hyaluronic Acid</span>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-pastel-50 border border-pastel-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-white flex items-center justify-center text-amber-500 text-sm shadow-sm">✨</span>
+                                        <span class="text-xs sm:text-sm font-medium">Làm Sáng & Giảm Thâm</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-amber-600">Niacinamide 5%</span>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-pastel-50 border border-pastel-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-white flex items-center justify-center text-purple-500 text-sm shadow-sm">🌙</span>
+                                        <span class="text-xs sm:text-sm font-medium">Tái Tạo Chống Lão Hóa</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-purple-600">Retinol 0.5%</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 text-center">
+                                <span class="text-xs text-pastel-muted">💡 Khuyên dùng: Thoa Kem Chống Nắng mỗi ngày!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: INTERACTIVE SKIN TYPE QUIZ -->
+    <section id="skin-quiz" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs uppercase tracking-widest font-bold text-pastel-accent">Chẩn Đoán Cá Nhân Hóa</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-pastel-dark mt-1">Bài Test Xác Định Loại Da Trắc Nghiệm</h2>
+            <p class="text-pastel-muted text-sm sm:text-base mt-2">Trả lời 4 câu hỏi ngắn để khám phá đúng loại da & nhận lời khuyên routine chuẩn nhất.</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto glass-card rounded-3xl p-6 sm:p-10 shadow-xl border border-pastel-200">
+            <!-- Quiz Container -->
+            <div id="quiz-container">
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="flex justify-between text-xs font-semibold text-pastel-muted mb-2">
+                        <span id="quiz-step-label">Câu hỏi 1 / 4</span>
+                        <span id="quiz-progress-percent">25%</span>
+                    </div>
+                    <div class="w-full bg-pastel-100 h-2.5 rounded-full overflow-hidden">
+                        <div id="quiz-progress-bar" class="pink-gradient-bold h-full w-1/4 transition-all duration-300"></div>
+                    </div>
                 </div>
 
-                <div class="stat">
-                    <strong>Glow</strong>
-                    <span>Khỏe đẹp mỗi ngày</span>
+                <!-- Step Content Container -->
+                <div id="quiz-question-box" class="space-y-6">
+                    <!-- Dynamic Question Rendered via JS -->
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between items-center mt-8 pt-6 border-t border-pastel-100">
+                    <button id="quiz-prev-btn" onclick="prevQuizStep()" class="px-5 py-2.5 rounded-full bg-pastel-100 text-pastel-dark font-medium text-sm hover:bg-pastel-200 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Quay lại
+                    </button>
+                    <button id="quiz-next-btn" onclick="nextQuizStep()" disabled class="px-6 py-2.5 rounded-full pink-gradient-bold text-white font-semibold text-sm shadow-md hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                        Tiếp theo <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
                 </div>
             </div>
-        </section>
 
-        <aside class="feature-card">
-            <h2>Khám Phá GlowCare</h2>
+            <!-- Quiz Result View (Hidden by default) -->
+            <div id="quiz-result" class="hidden text-center space-y-6">
+                <div class="w-20 h-20 rounded-full pink-gradient flex items-center justify-center text-4xl mx-auto shadow-md">
+                    👑
+                </div>
+                <div>
+                    <span class="text-xs uppercase font-bold text-pastel-accent tracking-widest">Kết Quả Phân Tích Da</span>
+                    <h3 id="result-skin-type" class="font-serif text-3xl font-bold text-pastel-dark mt-1">Da Dầu (Oily Skin)</h3>
+                    <p id="result-description" class="text-sm text-pastel-muted max-w-xl mx-auto mt-2 leading-relaxed">
+                        Làn da của bạn tiết nhiều dầu thừa, đặc biệt vùng chữ T, dễ bít tắc lỗ chân lông.
+                    </p>
+                </div>
 
-            <div class="feature">
-                <h3>🌿 Phân tích loại da</h3>
-                <p>Hiểu rõ đặc điểm làn da để lựa chọn cách chăm sóc phù hợp.</p>
+                <!-- Recommended actives & advice -->
+                <div class="grid sm:grid-cols-2 gap-4 text-left pt-4">
+                    <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-100">
+                        <h4 class="font-bold text-xs uppercase text-emerald-800 flex items-center gap-1.5 mb-2">
+                            <i class="fa-solid fa-circle-check"></i> Hoạt chất nên dùng
+                        </h4>
+                        <div id="result-dos" class="flex flex-wrap gap-1.5">
+                            <span class="px-2.5 py-1 rounded-lg bg-white text-emerald-800 text-xs font-semibold shadow-sm">BHA 2%</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white text-emerald-800 text-xs font-semibold shadow-sm">Niacinamide</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white text-emerald-800 text-xs font-semibold shadow-sm">Zinc PCA</span>
+                        </div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-rose-50 border border-rose-100">
+                        <h4 class="font-bold text-xs uppercase text-rose-800 flex items-center gap-1.5 mb-2">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Nên hạn chế
+                        </h4>
+                        <div id="result-donts" class="flex flex-wrap gap-1.5">
+                            <span class="px-2.5 py-1 rounded-lg bg-white text-rose-800 text-xs font-semibold shadow-sm">Dầu dừa</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white text-rose-800 text-xs font-semibold shadow-sm">Kem quá đặc</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 flex flex-wrap justify-center gap-3">
+                    <button onclick="resetQuiz()" class="px-5 py-2.5 rounded-full bg-pastel-100 text-pastel-dark text-sm font-semibold hover:bg-pastel-200">
+                        <i class="fa-solid fa-rotate-left mr-1"></i> Làm lại test
+                    </button>
+                    <a href="#routines" class="px-6 py-2.5 rounded-full pink-gradient-bold text-white text-sm font-semibold shadow-md hover:opacity-90">
+                        Xem Routine Phù Hợp <i class="fa-solid fa-arrow-down ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: SKIN TYPE CARDS GUIDE -->
+    <section id="skin-types" class="py-16 bg-pastel-50/60 border-y border-pastel-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-widest font-bold text-pastel-accent">Đặc Tính Làn Da</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-pastel-dark mt-1">Phân Loại & Cách Nhận Biết Da</h2>
+                <p class="text-pastel-muted text-sm sm:text-base mt-2">Mỗi loại da có nhu cầu sinh học hoàn toàn khác nhau. Hãy lựa chọn đúng hướng tiếp cận.</p>
             </div>
 
-            <div class="feature">
-                <h3>🌸 Tư vấn sản phẩm</h3>
-                <p>Tìm kiếm sản phẩm phù hợp với nhu cầu và tình trạng da.</p>
+            <!-- Grid 5 Skin Types -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Da Dầu -->
+                <div class="bg-white rounded-3xl p-6 border border-pastel-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold mb-4">
+                        ✨
+                    </div>
+                    <span class="text-xs uppercase font-bold text-amber-600">Oily Skin</span>
+                    <h3 class="text-xl font-bold text-pastel-dark mt-0.5 mb-2">Da Dầu (Oily Skin)</h3>
+                    <p class="text-xs text-pastel-muted leading-relaxed mb-4">
+                        Tuyến bã nhờn hoạt động quá mức, bề mặt bóng dầu toàn mặt, lỗ chân lông to, dễ nổi mụn đầu đen và mụn ẩn.
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <div class="p-2.5 rounded-xl bg-pastel-50 font-medium">
+                            <strong class="text-pastel-dark">Nhu cầu chính:</strong> Làm sạch sâu, kiểm soát dầu, cấp nước kết cấu mỏng nhẹ.
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">BHA</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Niacinamide</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Zinc</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Da Khô -->
+                <div class="bg-white rounded-3xl p-6 border border-pastel-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-2xl font-bold mb-4">
+                        💧
+                    </div>
+                    <span class="text-xs uppercase font-bold text-sky-600">Dry Skin</span>
+                    <h3 class="text-xl font-bold text-pastel-dark mt-0.5 mb-2">Da Khô (Dry Skin)</h3>
+                    <p class="text-xs text-pastel-muted leading-relaxed mb-4">
+                        Thiếu hụt độ ẩm và lipid thiên nhiên, bề mặt thô ráp, dễ bong tróc, cảm giác căng thắt sau rửa mặt và sớm xuất hiện nếp nhăn.
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <div class="p-2.5 rounded-xl bg-pastel-50 font-medium">
+                            <strong class="text-pastel-dark">Nhu cầu chính:</strong> Dưỡng ẩm sâu, khôi phục lớp màng bảo vệ hydrolipid.
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">HA</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Ceramides</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Glycerin</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Da Hỗn Hợp -->
+                <div class="bg-white rounded-3xl p-6 border border-pastel-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl font-bold mb-4">
+                        ☯️
+                    </div>
+                    <span class="text-xs uppercase font-bold text-purple-600">Combination Skin</span>
+                    <h3 class="text-xl font-bold text-pastel-dark mt-0.5 mb-2">Da Hỗn Hợp</h3>
+                    <p class="text-xs text-pastel-muted leading-relaxed mb-4">
+                        Đổ dầu nhiều ở vùng chữ T (trán, mũi, cằm) nhưng lại khô hoặc bình thường ở 2 bên vùng má chữ U.
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <div class="p-2.5 rounded-xl bg-pastel-50 font-medium">
+                            <strong class="text-pastel-dark">Nhu cầu chính:</strong> Cân bằng vùng T kiềm dầu & cấp ẩm vừa đủ cho vùng má.
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Niacinamide</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">AHA/BHA nhẹ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Da Nhạy Cảm -->
+                <div class="bg-white rounded-3xl p-6 border border-pastel-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl font-bold mb-4">
+                        🌸
+                    </div>
+                    <span class="text-xs uppercase font-bold text-rose-600">Sensitive Skin</span>
+                    <h3 class="text-xl font-bold text-pastel-dark mt-0.5 mb-2">Da Nhạy Cảm</h3>
+                    <p class="text-xs text-pastel-muted leading-relaxed mb-4">
+                        Màng bảo vệ da suy yếu, dễ bị mẩn đỏ, ngứa rát, châm chít khi thời tiết thay đổi hoặc tiếp xúc mỹ phẩm lạ.
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <div class="p-2.5 rounded-xl bg-pastel-50 font-medium">
+                            <strong class="text-pastel-dark">Nhu cầu chính:</strong> Tối giản thành phần, làm dịu, phục hồi không cồn/hương liệu.
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Rau má (Centella)</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Panthenol (B5)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Da Thường -->
+                <div class="bg-white rounded-3xl p-6 border border-pastel-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 md:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center text-2xl font-bold mb-4">
+                        🌿
+                    </div>
+                    <span class="text-xs uppercase font-bold text-teal-600">Normal Skin</span>
+                    <h3 class="text-xl font-bold text-pastel-dark mt-0.5 mb-2">Da Thường (Normal Skin)</h3>
+                    <p class="text-xs text-pastel-muted leading-relaxed mb-4">
+                        Độ ẩm và lượng dầu đạt trạng thái cân bằng lý tưởng, lỗ chân lông nhỏ, da mịn màng, ít khi bị kích ứng hay mụn.
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <div class="p-2.5 rounded-xl bg-pastel-50 font-medium">
+                            <strong class="text-pastel-dark">Nhu cầu chính:</strong> Duy trì độ ẩm, chống lão hóa sớm & bảo vệ trước tia UV.
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Vitamin C</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">HA</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Peptide</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: ACTIVE INGREDIENTS DATABASE -->
+    <section id="ingredients" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <span class="text-xs uppercase tracking-widest font-bold text-pastel-accent">Tra Cứu Chuyên Sâu</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-pastel-dark mt-1">Thư Viện Hoạt Chất Skincare</h2>
+                <p class="text-pastel-muted text-sm mt-1">Tìm hiểu chi tiết công dụng, nồng độ an toàn & cảnh báo tác dụng phụ.</p>
             </div>
 
-            <div class="feature">
-                <h3>✨ Chăm sóc da khoa học</h3>
-                <p>Xây dựng thói quen chăm sóc da an toàn và hiệu quả.</p>
+            <!-- Ingredient Category Filters & Search -->
+            <div class="flex flex-wrap items-center gap-2">
+                <div class="relative min-w-[220px]">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-pastel-muted text-xs"></i>
+                    <input type="text" id="ingredient-search" oninput="filterIngredients()" placeholder="Tìm AHA, Retinol, B5..." class="w-full pl-9 pr-4 py-2 rounded-full border border-pastel-200 text-xs focus:outline-none focus:border-pastel-400 focus:ring-1 focus:ring-pastel-400 bg-white">
+                </div>
+                <select id="ingredient-cat-filter" onchange="filterIngredients()" class="px-3 py-2 rounded-full border border-pastel-200 text-xs bg-white text-pastel-dark focus:outline-none">
+                    <option value="all">Tất cả công dụng</option>
+                    <option value="acne">Trị mụn & Kiềm dầu</option>
+                    <option value="brightening">Làm sáng & Mờ thâm</option>
+                    <option value="antiaging">Chống lão hóa</option>
+                    <option value="soothing">Cấp ẩm & Phục hồi</option>
+                </select>
             </div>
-        </aside>
+        </div>
 
-    </main>
+        <!-- Ingredients Grid -->
+        <div id="ingredients-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Rendered dynamically by JavaScript -->
+        </div>
+    </section>
 
-    <footer>
-        © 2026 GlowCare | Chăm sóc da cùng bạn 🌷
+    <!-- SECTION 4: INTERACTIVE ACTIVE COMBINATION MATRIX / CONFLICT CHECKER -->
+    <section id="conflict-checker" class="py-20 bg-gradient-to-b from-pastel-100/60 to-white border-y border-pastel-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="px-3 py-1 rounded-full bg-pastel-200 text-pastel-accent text-xs font-bold uppercase tracking-wider">Công Cụ Tương Tác</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-pastel-dark mt-2">Ma Trận Kết Hợp Active (Mix Checker)</h2>
+                <p class="text-pastel-muted text-sm mt-2">Chọn 2 hoạt chất bạn muốn kết hợp trong cùng routine để kiểm tra độ an toàn hoặc nguy cơ kích ứng.</p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-xl border border-pastel-200">
+                <!-- Selection Controls -->
+                <div class="grid sm:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <label class="block text-xs font-bold text-pastel-dark uppercase mb-2">Hoạt chất 1:</label>
+                        <select id="active-1" onchange="checkActiveConflict()" class="w-full p-3.5 rounded-2xl border border-pastel-300 bg-white text-sm font-semibold text-pastel-dark focus:outline-none focus:ring-2 focus:ring-pastel-400">
+                            <option value="retinol">Retinol / Tretinoin</option>
+                            <option value="bha">BHA (Salicylic Acid)</option>
+                            <option value="aha">AHA (Glycolic / Lactic Acid)</option>
+                            <option value="vitc">Vitamin C (L-Ascorbic Acid)</option>
+                            <option value="niacinamide">Niacinamide (Vitamin B3)</option>
+                            <option value="ha">Hyaluronic Acid (HA)</option>
+                            <option value="b5">Panthenol (Vitamin B5)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-pastel-dark uppercase mb-2">Hoạt chất 2:</label>
+                        <select id="active-2" onchange="checkActiveConflict()" class="w-full p-3.5 rounded-2xl border border-pastel-300 bg-white text-sm font-semibold text-pastel-dark focus:outline-none focus:ring-2 focus:ring-pastel-400">
+                            <option value="bha">BHA (Salicylic Acid)</option>
+                            <option value="retinol">Retinol / Tretinoin</option>
+                            <option value="aha">AHA (Glycolic / Lactic Acid)</option>
+                            <option value="vitc">Vitamin C (L-Ascorbic Acid)</option>
+                            <option value="niacinamide">Niacinamide (Vitamin B3)</option>
+                            <option value="ha">Hyaluronic Acid (HA)</option>
+                            <option value="b5">Panthenol (Vitamin B5)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Result Card Container -->
+                <div id="conflict-result-box" class="mt-8 p-6 rounded-2xl bg-white border border-pastel-200 shadow-sm transition-all">
+                    <!-- Dynamic Conflict Output -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: SKINCARE ROUTINES BUILDER -->
+    <section id="routines" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs uppercase tracking-widest font-bold text-pastel-accent">Quy Trình Chuẩn Khoa Học</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-pastel-dark mt-1">Gợi Ý Routine Theo Loại Da</h2>
+            <p class="text-pastel-muted text-sm sm:text-base mt-2">Các bước thoa chuẩn ban Sáng (AM) & Ban Tối (PM) tối ưu hóa hiệu quả dưỡng da.</p>
+            
+            <!-- Routine Type Selector Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mt-6">
+                <button onclick="switchRoutineTab('oily')" id="tab-routine-oily" class="tab-btn active px-5 py-2 rounded-full text-xs font-bold border border-pastel-200 transition-all">Da Dầu / Mụn</button>
+                <button onclick="switchRoutineTab('dry')" id="tab-routine-dry" class="tab-btn px-5 py-2 rounded-full text-xs font-bold border border-pastel-200 bg-white text-pastel-dark transition-all">Da Khô / Mất Nước</button>
+                <button onclick="switchRoutineTab('sensitive')" id="tab-routine-sensitive" class="tab-btn px-5 py-2 rounded-full text-xs font-bold border border-pastel-200 bg-white text-pastel-dark transition-all">Da Nhạy Cảm / Phục Hồi</button>
+            </div>
+        </div>
+
+        <!-- Routine Steps Display Grid -->
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Morning Routine (AM) -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-pastel-200 shadow-sm">
+                <div class="flex items-center justify-between pb-6 border-b border-pastel-100 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-500 flex items-center justify-center text-xl font-bold">
+                            ☀️
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-pastel-dark">Ban Sáng (AM Routine)</h3>
+                            <p class="text-xs text-pastel-muted">Mục tiêu: Bảo vệ & Chống Oxy Hóa</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-pastel-100 text-pastel-accent">5-10 phút</span>
+                </div>
+
+                <div id="am-steps-container" class="space-y-4">
+                    <!-- Dynamic AM steps rendered via JS -->
+                </div>
+            </div>
+
+            <!-- Evening Routine (PM) -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-pastel-200 shadow-sm">
+                <div class="flex items-center justify-between pb-6 border-b border-pastel-100 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-500 flex items-center justify-center text-xl font-bold">
+                            🌙
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-pastel-dark">Ban Tối (PM Routine)</h3>
+                            <p class="text-xs text-pastel-muted">Mục tiêu: Làm Sạch Sâu & Điều Trị / Tái Tạo</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-600">10-15 phút</span>
+                </div>
+
+                <div id="pm-steps-container" class="space-y-4">
+                    <!-- Dynamic PM steps rendered via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: PRODUCT DIRECTORY & MODAL VIEWER -->
+    <section id="products" class="py-20 bg-pastel-50/60 border-t border-pastel-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-xs uppercase tracking-widest font-bold text-pastel-accent">Gợi Ý Sản Phẩm</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-pastel-dark mt-1">Danh Mục Sản Phẩm Tiêu Chuẩn</h2>
+                    <p class="text-pastel-muted text-sm mt-1">Bấm vào từng sản phẩm để xem bảng thành phần chính & lưu ý khi sử dụng.</p>
+                </div>
+
+                <!-- Product Filters -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterProducts('all')" id="pfilter-all" class="px-4 py-1.5 rounded-full text-xs font-bold bg-pastel-400 text-white shadow-sm">Tất cả</button>
+                    <button onclick="filterProducts('cleanser')" id="pfilter-cleanser" class="px-4 py-1.5 rounded-full text-xs font-bold bg-white border border-pastel-200 text-pastel-dark">Sữa rửa mặt</button>
+                    <button onclick="filterProducts('serum')" id="pfilter-serum" class="px-4 py-1.5 rounded-full text-xs font-bold bg-white border border-pastel-200 text-pastel-dark">Serum Treatment</button>
+                    <button onclick="filterProducts('moisturizer')" id="pfilter-moisturizer" class="px-4 py-1.5 rounded-full text-xs font-bold bg-white border border-pastel-200 text-pastel-dark">Kem dưỡng ẩm</button>
+                    <button onclick="filterProducts('sunscreen')" id="pfilter-sunscreen" class="px-4 py-1.5 rounded-full text-xs font-bold bg-white border border-pastel-200 text-pastel-dark">Kem chống nắng</button>
+                </div>
+            </div>
+
+            <!-- Product Cards Grid -->
+            <div id="products-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamically rendered product cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: SAFETY & SIDE EFFECTS GUIDE -->
+    <section id="safety" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs uppercase tracking-widest font-bold text-pastel-accent">An Toàn Trên Hết</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-pastel-dark mt-1">Xử Lý Tác Dụng Phụ & Phân Biệt Đẩy Mụn</h2>
+            <p class="text-pastel-muted text-sm mt-2">Bảo vệ làn da an toàn, tránh tình trạng "cháy da" hay kích ứng nặng do dùng hoạt chất mạnh sai cách.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Card 1: Patch Test -->
+            <div class="bg-white p-6 rounded-3xl border border-pastel-200 shadow-sm space-y-3">
+                <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-lg">
+                    🧪
+                </div>
+                <h3 class="font-bold text-base text-pastel-dark">Quy Trình Patch Test Chuẩn</h3>
+                <p class="text-xs text-pastel-muted leading-relaxed">
+                    Trước khi thoa sản phẩm mới (đặc biệt là Retinol, AHA/BHA, Vit C) lên toàn mặt:
+                </p>
+                <ul class="text-xs text-pastel-dark space-y-1.5 list-disc pl-4">
+                    <li>Thoa một lượng nhỏ bằng hạt đậu vào vùng góc hàm hoặc dưới tai.</li>
+                    <li>Theo dõi phản ứng trong 24–48 giờ.</li>
+                    <li>Nếu không mẩn đỏ, ngứa rát -> An tâm sử dụng.</li>
+                </ul>
+            </div>
+
+            <!-- Card 2: Purging vs Breakout -->
+            <div class="bg-white p-6 rounded-3xl border border-pastel-200 shadow-sm space-y-3">
+                <div class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center font-bold text-lg">
+                    ⚡
+                </div>
+                <h3 class="font-bold text-base text-pastel-dark">Đẩy Mụn (Purging) vs Kích Ứng</h3>
+                <p class="text-xs text-pastel-muted leading-relaxed">
+                    Cách phân biệt hiện tượng bình thường và phản ứng dị ứng tiêu cực:
+                </p>
+                <div class="text-xs space-y-2">
+                    <div class="p-2 rounded-xl bg-emerald-50 text-emerald-800">
+                        <strong>Purging:</strong> Xuất hiện ở nơi hay có mụn ẩn sẵn, hết sau 4-6 tuần.
+                    </div>
+                    <div class="p-2 rounded-xl bg-rose-50 text-rose-800">
+                        <strong>Kích ứng:</strong> Nổi mụn đỏ li ti ở vùng da chưa từng mụn, rát ngứa dữ dội.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Recovery Step -->
+            <div class="bg-white p-6 rounded-3xl border border-pastel-200 shadow-sm space-y-3">
+                <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center font-bold text-lg">
+                    🛡️
+                </div>
+                <h3 class="font-bold text-base text-pastel-dark">Cấp Cứu Da Bị "Over-exfoliated"</h3>
+                <p class="text-xs text-pastel-muted leading-relaxed">
+                    Khi da bị tổn thương màng bảo vệ, ửng đỏ, châm chít:
+                </p>
+                <ul class="text-xs text-pastel-dark space-y-1.5 list-disc pl-4">
+                    <li>Dừng toàn bộ Treatment (Retinol, BHA, AHA, Vit C tươi) ngay lập tức.</li>
+                    <li>Tối giản routine: Rửa mặt dịu nhẹ + B5/Ceramide + Kem chống nắng.</li>
+                    <li>Duy trì phục hồi từ 2-3 tuần cho đến khi da khỏe hẳn.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-pastel-dark text-white pt-16 pb-12 border-t border-pastel-muted/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-white/10">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full pink-gradient-bold flex items-center justify-center text-white text-base">✨</div>
+                        <span class="font-serif text-xl font-bold tracking-tight text-white">GlowCare</span>
+                    </div>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Trang web tra cứu thông tin sản phẩm & kiến thức chăm sóc da dựa trên bằng chứng khoa học, giúp bạn sở hữu làn da rạng rỡ an toàn.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-pastel-200 mb-4">Danh Mục Trọng Tâm</h4>
+                    <ul class="text-xs space-y-2 text-gray-300">
+                        <li><a href="#skin-quiz" class="hover:text-pastel-200">Trắc nghiệm phân loại da</a></li>
+                        <li><a href="#ingredients" class="hover:text-pastel-200">Thư viện 10+ Hoạt chất active</a></li>
+                        <li><a href="#conflict-checker" class="hover:text-pastel-200">Công cụ Check Mix Active</a></li>
+                        <li><a href="#routines" class="hover:text-pastel-200">Routine Skincare ban sáng & tối</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-pastel-200 mb-4">Cam Kết Nội Dung</h4>
+                    <ul class="text-xs space-y-2 text-gray-300">
+                        <li>100% Thông tin khoa học kiểm chứng</li>
+                        <li>Không chèo kéo thương hiệu</li>
+                        <li>Cập nhật định kỳ thông số dược mỹ phẩm</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-pastel-200 mb-4">Nhận Mẹo Skincare Hàng Tuần</h4>
+                    <form onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã đăng ký nhận thông tin từ GlowCare ✨');" class="space-y-2">
+                        <input type="email" placeholder="Nhập email của bạn..." required class="w-full px-3.5 py-2 rounded-xl bg-white/10 text-white text-xs border border-white/20 focus:outline-none focus:border-pastel-300 placeholder-gray-400">
+                        <button type="submit" class="w-full py-2 rounded-xl pink-gradient-bold text-white text-xs font-bold shadow-md hover:opacity-90">Đăng Ký Khai Thông Kiến Thức</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-400 gap-4">
+                <p>© 2026 GlowCare Skincare Guide. Tất cả thông tin chỉ mang tính chất tham khảo giáo dục.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-pastel-200">Điều khoản</a>
+                    <a href="#" class="hover:text-pastel-200">Bảo mật</a>
+                    <a href="#" class="hover:text-pastel-200">Liên hệ cố vấn</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-</div>
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="product-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl space-y-6">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-pastel-100 text-pastel-dark flex items-center justify-center hover:bg-pastel-200 font-bold">
+                ✕
+            </button>
+            <div id="modal-content">
+                <!-- Modal content populated dynamically -->
+            </div>
+        </div>
+    </div>
 
-<!-- CHATBOT TIDIO -->
-<script src="//code.tidio.co/cgx3vuoauh1jpvtsaz6ldjrf25nsxydy.js" async></script>
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // ----------------------------------------------------
+        // DATA SOURCES
+        // ----------------------------------------------------
 
-</body>
-</html>
+        // 1. QUIZ DATA
+        const quizData = [
+            {
+                question: "1. Tình trạng đổ dầu trên mặt bạn sau khi rửa mặt 1 giờ?",
+                options: [
+                    { label: "Bóng dầu toàn bộ khuôn mặt, cảm giác nhờn dính", type: "oily" },
+                    { label: "Khô căng, có thể hơi rát hoặc bong tróc nhẹ", type: "dry" },
+                    { label: "Chỉ đổ dầu ở vùng trán, mũi, cằm (vùng T), má khô", type: "combination" },
+                    { label: "Bình thường, dễ chịu, không quá khô cũng không dầu", type: "normal" }
+                ]
+            },
+            {
+                question: "2. Kích thước lỗ chân lông trên da bạn ra sao?",
+                options: [
+                    { label: "To và thấy rõ khắp mặt, dễ bít tắc mụn đầu đen", type: "oily" },
+                    { label: "Rất nhỏ, hầu như không nhìn thấy", type: "dry" },
+                    { label: "Lỗ chân lông to tập trung nhiều ở vùng mũi & trán", type: "combination" },
+                    { label: "Lỗ chân lông nhỏ, da mịn màng tương đối đồng đều", type: "normal" }
+                ]
+            },
+            {
+                question: "3. Mức độ nhạy cảm & phản ứng của da với mỹ phẩm?",
+                options: [
+                    { label: "Rất dễ mẩn đỏ, ngứa rát khi dùng đồ mới hoặc đi nắng", type: "sensitive" },
+                    { label: "Đôi khi châm chít nhẹ nếu dùng tẩy da chết mạnh", type: "combination" },
+                    { label: "Khá khỏe, hiếm khi bị dị ứng hay đỏ da", type: "normal" },
+                    { label: "Da hay bị rát do thiếu ẩm trầm trọng", type: "dry" }
+                ]
+            },
+            {
+                question: "4. Tần suất xuất hiện mụn ẩn/mụn viêm trên da?",
+                options: [
+                    { label: "Thường xuyên nổi mụn trứng cá, mụn viêm, bít tắc", type: "oily" },
+                    { label: "Thi thoảng mới nổi mụn vào kỳ kinh nguyệt/thức khuya", type: "combination" },
+                    { label: "Rất hiếm khi có mụn", type: "dry" },
+                    { label: "Da mỏng mẩn đỏ nhiều hơn là mụn viêm", type: "sensitive" }
+                ]
+            }
+        ];
+
+        let currentQuizStep = 0;
+        let quizAnswers = [];
+
+        // 2. INGREDIENTS DATABASE
+        const ingredientsData = [
+            {
+                id: 'bha',
+                name: 'Salicylic Acid (BHA)',
+                category: 'acne',
+                badge: 'Trị Mụn / Kiểm Soát Dầu',
+                badgeColor: 'bg-amber-100 text-amber-800',
+                desc: 'Axit gốc dầu có khả năng thâm nhập sâu vào từng lỗ chân lông để hòa tan bã nhờn dư thừa và tế bào chết tích tụ.',
+                bestFor: 'Da dầu, da mụn bít tắc, mụn đầu đen, lỗ chân lông to.',
+                sideEffects: 'Đẩy mụn (Purging) nhẹ trong 2-4 tuần đầu, khô da nhẹ nếu lạm dụng.',
+                concentration: '0.5% - 2.0%',
+                dos: 'Dùng 2-3 lần/tuần ban tối. Kết hợp tốt với B5, Niacinamide, HA.',
+                donts: 'Tránh dùng cùng lúc trong một bước với Retinol nồng độ cao hoặc Vitamin C tươi.'
+            },
+            {
+                id: 'aha',
+                name: 'Glycolic / Lactic Acid (AHA)',
+                category: 'brightening',
+                badge: 'Tẩy Tế Bào Chết Bề Mặt',
+                badgeColor: 'bg-rose-100 text-rose-800',
+                desc: 'Axit tan trong nước làm mềm và bong tróc lớp tế bào sừng già cỗi trên bề mặt da, giúp da mịn màng và đều màu hơn.',
+                bestFor: 'Da khô, da lão hóa, da xỉn màu thô ráp.',
+                sideEffects: 'Tăng độ nhạy cảm của da dưới ánh nắng mặt trời, châm chít nhẹ.',
+                concentration: '5.0% - 10.0%',
+                dos: 'Thoa ban tối, luôn thoa kem chống nắng kỹ lưỡng vào sáng hôm sau.',
+                donts: 'Không chà xát mạnh khi thoa. Tránh phối hợp cùng Retinol mạnh.'
+            },
+            {
+                id: 'niacinamide',
+                name: 'Niacinamide (Vitamin B3)',
+                category: 'brightening',
+                badge: 'Phục Hồi / Mờ Thâm',
+                badgeColor: 'bg-emerald-100 text-emerald-800',
+                desc: 'Hoạt chất đa năng giúp điều tiết dầu thừa, củng cố màng rào chắn ceramide, mờ thâm sau mụn và thu nhỏ lỗ chân lông.',
+                bestFor: 'Mọi loại da, đặc biệt da dầu mụn & thâm sạm.',
+                sideEffects: 'Có thể gây đỏ nhẹ ngứa ngáy nếu dùng nồng độ quá cao (>10%).',
+                concentration: '2.0% - 10.0%',
+                dos: 'Có thể dùng cả sáng và tối. Phối hợp xuất sắc với Retinol, BHA, Zinc.',
+                donts: 'Tránh trộn lẫn ở nhiệt độ cao với Ascorbic Acid nồng độ đậm đặc.'
+            },
+            {
+                id: 'retinol',
+                name: 'Retinol (Vitamin A)',
+                category: 'antiaging',
+                badge: 'Chống Lão Hóa / Tái Tạo',
+                badgeColor: 'bg-purple-100 text-purple-800',
+                desc: 'Thành phần tiêu chuẩn vàng trong việc thúc đẩy tăng sinh collagen, tăng tốc độ thay tế bào da và xóa mờ nếp nhăn.',
+                bestFor: 'Da bắt đầu lão hóa, da mụn ẩn, kết cấu da không đều.',
+                sideEffects: 'Bong tróc, đỏ rát, khô da trong giai đoạn đầu (Retinization).',
+                concentration: '0.1% - 1.0%',
+                dos: 'Chỉ dùng BAN TỐI trên nền da khô. Bắt đầu từ 1-2 lần/tuần.',
+                donts: 'TUYỆT ĐỐI không bỏ qua kem chống nắng. Không dùng cho phụ nữ mang thai.'
+            },
+            {
+                id: 'ha',
+                name: 'Hyaluronic Acid (HA)',
+                category: 'soothing',
+                badge: 'Cấp Ẩm Đa Tầng',
+                badgeColor: 'bg-sky-100 text-sky-800',
+                desc: 'Phân tử ngậm nước siêu việt có khả năng giữ lượng nước gấp 1000 lần trọng lượng bản thân, giúp da căng mọng.',
+                bestFor: 'Mọi loại da, da thiếu nước, da khô bong tróc.',
+                sideEffects: 'Hầu như không có. Lưu ý nên thoa trên nền da ẩm để tránh hút ẩm ngược.',
+                concentration: '1.0% - 2.0%',
+                dos: 'Dùng hàng ngày AM & PM. Khóa ẩm lại bằng kem dưỡng dạng cream/gel.',
+                donts: 'Không dùng trên nền da quá khô rát trong môi trường điều hòa khô cằn.'
+            },
+            {
+                id: 'b5',
+                name: 'Panthenol (Vitamin B5)',
+                category: 'soothing',
+                badge: 'Làm Dịu / Phục Hồi',
+                badgeColor: 'bg-teal-100 text-teal-800',
+                desc: 'Hoạt chất phục hồi màng bảo vệ da bị tổn thương, làm dịu rát mẩn đỏ và thúc đẩy quá trình lành vết thương.',
+                bestFor: 'Da nhạy cảm, da đang dùng Treatment mạnh, da sau nặn mụn.',
+                sideEffects: 'Cực kỳ lành tính, không gây kích ứng.',
+                concentration: '2.0% - 5.0%',
+                dos: 'Dùng thường xuyên để làm dịu skin barrier. Kết hợp được với mọi active.',
+                donts: 'Không có chống chỉ định đặc biệt.'
+            }
+        ];
+
+        // 3. COMBINATION MATRIX CONFLICT DATA
+        const conflictRules = {
+            'retinol-bha': {
+                status: 'danger',
+                title: '⚠️ CẢNH BÁO: Nguy Cơ Kích Ứng Cao',
+                desc: 'Cả Retinol và BHA đều là các hoạt chất tái tạo tế bào mạnh. Việc thoa chồng trực tiếp lên nhau dễ gây bỏng rát, bong tróc dữ dội và phá hủy rào chắn da.',
+                advice: 'Nên dùng cách ngày (ví dụ: BHA tối T2-T4-T6, Retinol tối T3-T5-T7) hoặc BHA dùng sáng, Retinol tối.'
+            },
+            'retinol-aha': {
+                status: 'danger',
+                title: '⚠️ CẢNH BÁO: Quá Tải Tẩy Da Chết',
+                desc: 'AHA làm mỏng bớt lớp sừng bề mặt trong khi Retinol đẩy nhanh thay da, khiến da vô cùng nhạy cảm và rát.',
+                advice: 'Luân phiên sử dụng khác buổi hoặc khác ngày.'
+            },
+            'retinol-vitc': {
+                status: 'warning',
+                title: '⚡ LƯU Ý: Khác Nhau Môi Trường pH',
+                desc: 'Vitamin C dạng L-AA hoạt động ở pH thấp (~3.5), trong khi Retinol tối ưu ở pH trung tính (~5.5 - 6.0). Thoa cùng lúc làm giảm tác dụng cả hai.',
+                advice: 'Sử dụng Vitamin C vào BAN SÁNG (tăng hiệu quả kem chống nắng) và Retinol vào BAN TỐI.'
+            },
+            'retinol-niacinamide': {
+                status: 'safe',
+                title: '✨ KẾT HỢP HOÀN HẢO (Combo Vàng)',
+                desc: 'Niacinamide giúp làm dịu, tăng cường Ceramide phục hồi da, giảm thiểu đáng kể hiệu ứng bong tróc của Retinol.',
+                advice: 'Thoa Niacinamide trước 5-10 phút, sau đó thoa Retinol.'
+            },
+            'bha-niacinamide': {
+                status: 'safe',
+                title: '✨ KẾT HỢP TUYỆT VỜI Cho Da Dầu Mụn',
+                desc: 'BHA làm sạch sâu lỗ chân lông, Niacinamide giúp kiềm dầu và mờ thâm sau mụn.',
+                advice: 'An toàn khi dùng trong cùng một routine. Thoa BHA trước, đợi thấm rồi thoa Niacinamide.'
+            },
+            'retinol-ha': {
+                status: 'safe',
+                title: '💧 BỘ ĐÔI DƯỠNG ẨM & TÁI TẠO',
+                desc: 'HA bù ẩm tức thì cho da, hạn chế tình trạng khô da do Retinol gây ra.',
+                advice: 'Thoa HA trên nền da ẩm nhẹ, đợi khô hoàn toàn rồi mới thoa Retinol.'
+            },
+            'bha-vitc': {
+                status: 'warning',
+                title: '⚡ CẨN TRỌNG: Dễ Gây Rát Da Nhạy Cảm',
+                desc: 'Cả hai đều có tính axit, có thể gây quá tải cho làn da mỏng yếu.',
+                advice: 'Nên chia: Vitamin C dùng sáng, BHA dùng tối.'
+            }
+        };
+
+        // 4. ROUTINE STEPS DATA
+        const routineData = {
+            oily: {
+                am: [
+                    { step: '1. Rửa mặt', title: 'Sữa rửa mặt dạng Gel dịu nhẹ (pH 5.5)', desc: 'Làm sạch dầu thừa sau đêm dài mà không tước đi độ ẩm tự nhiên.' },
+                    { step: '2. Toner / Essence', title: 'Toner kiềm dầu chứa BHA nhẹ hoặc Tràm Trà', desc: 'Cân bằng độ pH và hỗ trợ thông thoáng lỗ chân lông.' },
+                    { step: '3. Serum', title: 'Serum Niacinamide 5% + Zinc PCA', desc: 'Kiềm dầu, kháng viêm và làm sáng vệt thâm mụn.' },
+                    { step: '4. Dưỡng ẩm', title: 'Kem dưỡng dạng Gel-cream mỏng nhẹ', desc: 'Cấp nước không chứa dầu (Oil-free), thấm nhanh.' },
+                    { step: '5. Chống nắng', title: 'Kem chống nắng Kiềm Dầu (Ráo mịn, SPF50+)', desc: 'Bảo vệ da trước tia UV & kiểm soát bóng bẩy cả ngày.' }
+                ],
+                pm: [
+                    { step: '1. Tẩy trang', title: 'Nước tẩy trang Micellar Water dành cho da dầu', desc: 'Làm sạch kem chống nắng và bụi mịn bám trên da.' },
+                    { step: '2. Rửa mặt', title: 'Sữa rửa mặt tạo bọt mịn chứa BHA/Salicylic Acid', desc: 'Làm sạch kép (Double Cleansing) sâu trong lỗ chân lông.' },
+                    { step: '3. Treatment (Tẩy da chết)', title: 'Serum BHA 2% (2-3 lần/tuần)', desc: 'Gia tăng khả năng giải phóng bã nhờn tích tụ.' },
+                    { step: '4. Phục hồi', title: 'Serum Hyaluronic Acid / Centella (Rau má)', desc: 'Làm dịu da sau khi tẩy tế bào chết.' },
+                    { step: '5. Khóa ẩm', title: 'Gel dưỡng khóa ẩm thoáng nhẹ', desc: 'Giữ lại các dưỡng chất mà không làm nặng mặt.' }
+                ]
+            },
+            dry: {
+                am: [
+                    { step: '1. Rửa mặt', title: 'Rửa nước ấm hoặc Sữa rửa mặt dạng Cream dịu nhẹ', desc: 'Giữ lại lớp lipid bảo vệ da.' },
+                    { step: '2. Toner cấp ẩm', title: 'Toner chứa Hyaluronic Acid & Glycerin', desc: 'Cấp ẩm tức thì cho nền da khô.' },
+                    { step: '3. Serum', title: 'Serum Vitamin C (L-AA hoặc Dẫn xuất) + HA', desc: 'Chống oxy hóa và làm sáng da khô xỉn màu.' },
+                    { step: '4. Kem dưỡng', title: 'Kem dưỡng ẩm dạng Cream đậm đặc chứa Ceramides', desc: 'Khôi phục màng ẩm bị tổn thương.' },
+                    { step: '5. Chống nắng', title: 'Kem chống nắng Dưỡng Ẩm (Moisturizing Sunscreen)', desc: 'Bảo vệ da và ngăn chặn sự bốc hơi nước.' }
+                ],
+                pm: [
+                    { step: '1. Tẩy trang', title: 'Sáp tẩy trang / Dầu tẩy trang', desc: 'Làm sạch dịu nhẹ mà vẫn giữ được độ ẩm mềm cho da.' },
+                    { step: '2. Rửa mặt', title: 'Sữa rửa mặt dưỡng ẩm nhẹ nhàng không tạo bọt', desc: 'Làm sạch dịu nhẹ tuyệt đối.' },
+                    { step: '3. Treatment', title: 'Serum AHA (Glycolic Acid 5%) - 2 lần/tuần', desc: 'Loại bỏ vảy da khô bong tróc trên bề mặt.' },
+                    { step: '4. Serum Phục Hồi', title: 'Serum B5 / Peptides', desc: 'Tái tạo liên kết da hư tổn.' },
+                    { step: '5. Khóa ẩm sâu', title: 'Kem dưỡng ẩm Rich Cream + Dầu dưỡng khóa ẩm', desc: 'Khóa chặt độ ẩm suốt đêm.' }
+                ]
+            },
+            sensitive: {
+                am: [
+                    { step: '1. Rửa mặt', title: 'Sữa rửa mặt tạo bọt cực dịu lành tính', desc: 'Không chứa cồn, hương liệu, xà phòng.' },
+                    { step: '2. Cân bằng', title: 'Xịt khoáng hoặc Toner Rau Má (Centella)', desc: 'Làm dịu phản ứng đỏ da ngay tức thì.' },
+                    { step: '3. Serum', title: 'Serum B5 (Panthenol) 5% + HA', desc: 'Gia cố màng bảo vệ da đang yếu.' },
+                    { step: '4. Khóa ẩm', title: 'Kem dưỡng tối giản thành phần (Recovery Cream)', desc: 'An toàn không kích ứng.' },
+                    { step: '5. Chống nắng', title: 'Kem chống nắng Vật Lý (Kẽm Oxit / Titanium Dioxide)', desc: 'Lành tính nhất cho làn da nhạy cảm.' }
+                ],
+                pm: [
+                    { step: '1. Tẩy trang', title: 'Nước tẩy trang Micellar nhạy cảm', desc: 'Lau nhẹ nhàng bằng bông tẩy trang mềm.' },
+                    { step: '2. Rửa mặt', title: 'Sữa rửa mặt dịu nhẹ chuẩn Y Khoa', desc: 'Làm sạch nhẹ nhàng.' },
+                    { step: '3. Phục hồi chuyên sâu', title: 'Serum Ceramide + Madecassoside', desc: 'Tập trung khôi phục cấu trúc da.' },
+                    { step: '4. Khóa ẩm', title: 'Kem dưỡng phục hồi dày nhẹ vừa đủ', desc: 'Tạo lớp màng bảo vệ da qua đêm.' }
+                ]
+            }
+        };
+
+        // 5. PRODUCTS DIRECTORY
+        const productsData = [
+            {
+                id: 1,
+                name: 'Sữa Rửa Mặt CeraVe Foaming Facial Cleanser',
+                category: 'cleanser',
+                badge: 'Cho Da Dầu Mụn',
+                image: '🧴',
+                tagColor: 'bg-emerald-100 text-emerald-800',
+                shortDesc: 'Sữa rửa mặt tạo bọt dịu nhẹ chứa 3 loại Ceramide thiết yếu & Niacinamide.',
+                fullDesc: 'Sản phẩm kinh điển giúp làm sạch sâu bã nhờn mà không làm khô căng hay tổn thương rào chắn bảo vệ da.',
+                ingredients: 'Ceramide NP, AP, EOP, Niacinamide, Hyaluronic Acid.',
+                pros: ['Độ pH 5.5 cân bằng', 'Không hương liệu', 'Dung tích lớn tiết kiệm'],
+                cons: ['Tạo bọt nhẹ chứ không nhiều bọt sponge']
+            },
+            {
+                id: 2,
+                name: 'Serum Paula\'s Choice Skin Perfecting 2% BHA Liquid',
+                category: 'serum',
+                badge: 'Best Seller Trị Mụn',
+                image: '🧪',
+                tagColor: 'bg-amber-100 text-amber-800',
+                shortDesc: 'Tẩy tế bào chết hoá học 2% Salicylic Acid giúp tẩy mụn đầu đen & mụn ẩn.',
+                fullDesc: 'Dung dịch tẩy da chết nổi tiếng toàn cầu, hòa tan dầu thừa bít tắc trong nang lông, cải thiện lỗ chân lông rõ rệt.',
+                ingredients: '2% Salicylic Acid, Camellia Oleifera (Trà xanh).',
+                pros: ['Hiệu quả mụn đầu đen nhanh', 'Làm mịn da rõ rệt'],
+                cons: ['Mùi hơi hắc nhẹ', 'Dễ đẩy mụn trong tuần đầu']
+            },
+            {
+                id: 3,
+                name: 'Kem Dưỡng Phục Hồi La Roche-Posay Cicaplast Baume B5+',
+                category: 'moisturizer',
+                badge: 'Phục Hồi Cấp Tốc',
+                image: '🌸',
+                tagColor: 'bg-rose-100 text-rose-800',
+                shortDesc: 'Kem dưỡng đa năng làm dịu da rát đỏ, phục hồi sau xâm lấn & kích ứng.',
+                fullDesc: 'Chứa Panthenol 5% kết hợp với đột phá Tribioma giúp cân bằng hệ vi sinh trên da, làm lành tổn thương vượt trội.',
+                ingredients: '5% Panthenol (B5), Madecassoside, Tribioma, Bơ hạt mỡ.',
+                pros: ['Phục hồi da khô rát cực nhanh', 'An toàn cho cả trẻ em'],
+                cons: ['Kết cấu khá dày, da quá dầu nên thoa mỏng']
+            },
+            {
+                id: 4,
+                name: 'Kem Chống Nắng La Roche-Posay Anthelios UVMune 400',
+                category: 'sunscreen',
+                badge: 'Màng Lọc Đột Phá',
+                image: '☀️',
+                tagColor: 'bg-sky-100 text-sky-800',
+                shortDesc: 'Chống nắng phổ rộng bảo vệ trước tia UVA dài (380-400nm) độc hại.',
+                fullDesc: 'Công nghệ màng lọc Mexoryl 400 độc quyền giúp bảo vệ da tối ưu nhất khỏi nguy cơ thâm sạm & lão hóa sớm.',
+                ingredients: 'Mexoryl 400, Netlock technology, Glycerin.',
+                pros: ['Bảo vệ da số 1', 'Kháng nước tốt, không vón cục'],
+                cons: ['Có cồn khô hỗ trợ thấm nhanh (da nhạy cảm cồn nên lưu ý)']
+            }
+        ];
+
+        // ----------------------------------------------------
+        // FUNCTIONS & INTERACTION LOGIC
+        // ----------------------------------------------------
+
+        // Init App On Load
+        window.onload = function() {
+            renderQuizQuestion();
+            renderIngredients();
+            checkActiveConflict();
+            renderRoutine('oily');
+            renderProducts('all');
+        };
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function scrollToQuiz() {
+            document.getElementById('skin-quiz').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // QUIZ LOGIC
+        function renderQuizQuestion() {
+            const container = document.getElementById('quiz-question-box');
+            const data = quizData[currentQuizStep];
+
+            document.getElementById('quiz-step-label').innerText = `Câu hỏi ${currentQuizStep + 1} / ${quizData.length}`;
+            const progress = ((currentQuizStep + 1) / quizData.length) * 100;
+            document.getElementById('quiz-progress-percent').innerText = `${progress}%`;
+            document.getElementById('quiz-progress-bar').style.width = `${progress}%`;
+
+            let html = `<h3 class="text-lg font-bold text-pastel-dark mb-4">${data.question}</h3><div class="space-y-3">`;
+
+            data.options.forEach((opt, idx) => {
+                const isSelected = quizAnswers[currentQuizStep] === opt.type;
+                html += `
+                    <div onclick="selectQuizOption('${opt.type}')" class="p-4 rounded-2xl border ${isSelected ? 'border-pastel-400 bg-pastel-100/60 ring-2 ring-pastel-300' : 'border-pastel-200 bg-white hover:border-pastel-300'} cursor-pointer transition-all flex items-center justify-between">
+                        <span class="text-xs sm:text-sm font-medium text-pastel-dark">${opt.label}</span>
+                        <div class="w-5 h-5 rounded-full border ${isSelected ? 'bg-pastel-accent border-pastel-accent' : 'border-pastel-300'} flex items-center justify-center text-white text-[10px]">
+                            ${isSelected ? '✓' : ''}
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+
+            document.getElementById('quiz-prev-btn').disabled = currentQuizStep === 0;
+            document.getElementById('quiz-next-btn').disabled = !quizAnswers[currentQuizStep];
+        }
+
+        function selectQuizOption(type) {
+            quizAnswers[currentQuizStep] = type;
+            renderQuizQuestion();
+        }
+
+        function nextQuizStep() {
+            if (currentQuizStep < quizData.length - 1) {
+                currentQuizStep++;
+                renderQuizQuestion();
+            } else {
+                calculateQuizResult();
+            }
+        }
+
+        function prevQuizStep() {
+            if (currentQuizStep > 0) {
+                currentQuizStep--;
+                renderQuizQuestion();
+            }
+        }
+
+        function calculateQuizResult() {
+            const counts = {};
+            quizAnswers.forEach(ans => counts[ans] = (counts[ans] || 0) + 1);
+            let resultType = 'oily';
+            let maxCount = 0;
+            for (const type in counts) {
+                if (counts[type] > maxCount) {
+                    maxCount = counts[type];
+                    resultType = type;
+                }
+            }
+
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+
+            const resultTitle = document.getElementById('result-skin-type');
+            const resultDesc = document.getElementById('result-description');
+
+            if (resultType === 'oily') {
+                resultTitle.innerText = "Làn Da Dầu (Oily Skin)";
+                resultDesc.innerText = "Làn da bạn có tuyến dầu hoạt động mạnh, lỗ chân lông to và dễ phát sinh mụn. Cần tập trung làm sạch sâu & dùng dưỡng ẩm mỏng nhẹ.";
+            } else if (resultType === 'dry') {
+                resultTitle.innerText = "Làn Da Khô (Dry Skin)";
+                resultDesc.innerText = "Da bạn bị thiếu hụt lớp màng ẩm lipid, dễ thô ráp & bong tróc. Cần ưu tiên cấp ẩm đa tầng và dùng kem dưỡng phục hồi đậm đặc.";
+            } else if (resultType === 'combination') {
+                resultTitle.innerText = "Làn Da Hỗn Hợp (Combination)";
+                resultDesc.innerText = "Vùng chữ T của bạn đổ dầu nhưng 2 bên má lại khô ráo. Hãy áp dụng quy tắc kiềm dầu vùng T và cấp ẩm vùng má.";
+            } else if (resultType === 'sensitive') {
+                resultTitle.innerText = "Làn Da Nhạy Cảm (Sensitive)";
+                resultDesc.innerText = "Màng rào chắn da của bạn tương đối mỏng yếu, dễ đỏ rát. Tối giản sản phẩm, ưu tiên thành phần làm dịu như B5 & Rau má.";
+            } else {
+                resultTitle.innerText = "Làn Da Thường Cân Bằng";
+                resultDesc.innerText = "Chúc mừng! Làn da bạn đạt độ cân bằng ẩm - dầu tuyệt vời. Hãy duy trì chống nắng & chống lão hóa nhẹ nhàng.";
+            }
+        }
+
+        function resetQuiz() {
+            currentQuizStep = 0;
+            quizAnswers = [];
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            renderQuizQuestion();
+        }
+
+        // INGREDIENTS RENDER & FILTER
+        function renderIngredients() {
+            const grid = document.getElementById('ingredients-grid');
+            const search = document.getElementById('ingredient-search').value.toLowerCase();
+            const cat = document.getElementById('ingredient-cat-filter').value;
+
+            const filtered = ingredientsData.filter(ing => {
+                const matchSearch = ing.name.toLowerCase().includes(search) || ing.desc.toLowerCase().includes(search);
+                const matchCat = cat === 'all' || ing.category === cat;
+                return matchSearch && matchCat;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-pastel-muted text-sm">Không tìm thấy hoạt chất phù hợp.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(ing => `
+                <div class="bg-white rounded-3xl p-6 border border-pastel-200 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${ing.badgeColor}">${ing.badge}</span>
+                            <span class="text-xs font-bold text-pastel-accent">Nồng độ: ${ing.concentration}</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-pastel-dark mb-2">${ing.name}</h3>
+                        <p class="text-xs text-pastel-muted leading-relaxed mb-4">${ing.desc}</p>
+                        
+                        <div class="space-y-2 text-xs">
+                            <div class="p-2.5 rounded-xl bg-pastel-50">
+                                <strong class="text-pastel-dark block mb-0.5">✨ Phù hợp nhất:</strong>
+                                <span class="text-pastel-muted">${ing.bestFor}</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-rose-50/60 text-rose-900">
+                                <strong class="block mb-0.5">⚠️ Cảnh báo tác dụng phụ:</strong>
+                                <span>${ing.sideEffects}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-pastel-100 text-[11px] space-y-1">
+                        <div><strong class="text-emerald-700">✓ Nên:</strong> ${ing.dos}</div>
+                        <div><strong class="text-rose-700">✗ Tránh:</strong> ${ing.donts}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterIngredients() {
+            renderIngredients();
+        }
+
+        // CONFLICT CHECKER MATRIX LOGIC
+        function checkActiveConflict() {
+            const a1 = document.getElementById('active-1').value;
+            const a2 = document.getElementById('active-2').value;
+            const box = document.getElementById('conflict-result-box');
+
+            if (a1 === a2) {
+                box.innerHTML = `
+                    <div class="text-center py-4">
+                        <span class="text-2xl">🤔</span>
+                        <h4 class="font-bold text-sm text-pastel-dark mt-1">Bạn đang chọn trùng 1 hoạt chất!</h4>
+                        <p class="text-xs text-pastel-muted">Vui lòng chọn 2 hoạt chất khác nhau để kiểm tra mức độ tương tác.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const key1 = `${a1}-${a2}`;
+            const key2 = `${a2}-${a1}`;
+            const rule = conflictRules[key1] || conflictRules[key2];
+
+            if (rule) {
+                let badgeClass = 'bg-emerald-100 text-emerald-800 border-emerald-200';
+                if (rule.status === 'danger') badgeClass = 'bg-rose-100 text-rose-800 border-rose-200';
+                if (rule.status === 'warning') badgeClass = 'bg-amber-100 text-amber-800 border-amber-200';
+
+                box.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="inline-block px-3 py-1 rounded-full text-xs font-bold border ${badgeClass}">
+                            ${rule.title}
+                        </div>
+                        <p class="text-xs sm:text-sm text-pastel-dark leading-relaxed font-medium">${rule.desc}</p>
+                        <div class="p-3.5 rounded-xl bg-pastel-50 border border-pastel-200 text-xs text-pastel-dark">
+                            <strong>💡 Khuyên dùng từ chuyên gia:</strong> ${rule.advice}
+                        </div>
+                    </div>
+                `;
+            } else {
+                box.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                            ✨ An Toàn Phối Hợp
+                        </div>
+                        <p class="text-xs sm:text-sm text-pastel-dark leading-relaxed">
+                            Hai hoạt chất này có thể kết hợp nhẹ nhàng trong cùng một routine mà không gây xung đột thành phần nghiêm trọng.
+                        </p>
+                        <div class="p-3.5 rounded-xl bg-pastel-50 border border-pastel-200 text-xs text-pastel-dark">
+                            <strong>💡 Lưu ý:</strong> Vẫn nên áp dụng quy tắc thoa lỏng trước - đặc sau (Serum -> Cream) và lắng nghe phản ứng của da.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // ROUTINE TABS SWITCHING
+        function switchRoutineTab(type) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('bg-white', 'text-pastel-dark');
+            });
+            const activeBtn = document.getElementById(`tab-routine-${type}`);
+            activeBtn.classList.add('active');
+            activeBtn.classList.remove('bg-white', 'text-pastel-dark');
+
+            renderRoutine(type);
+        }
+
+        function renderRoutine(type) {
+            const data = routineData[type] || routineData['oily'];
+            const amContainer = document.getElementById('am-steps-container');
+            const pmContainer = document.getElementById('pm-steps-container');
+
+            amContainer.innerHTML = data.am.map(item => `
+                <div class="p-4 rounded-2xl bg-pastel-50/70 border border-pastel-100 flex items-start gap-3">
+                    <div class="w-7 h-7 rounded-full pink-gradient-bold text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                        ✓
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-pastel-accent block">${item.step}</span>
+                        <h4 class="font-bold text-xs sm:text-sm text-pastel-dark">${item.title}</h4>
+                        <p class="text-xs text-pastel-muted mt-0.5">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            pmContainer.innerHTML = data.pm.map(item => `
+                <div class="p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100/60 flex items-start gap-3">
+                    <div class="w-7 h-7 rounded-full bg-indigo-500 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                        ✓
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block">${item.step}</span>
+                        <h4 class="font-bold text-xs sm:text-sm text-pastel-dark">${item.title}</h4>
+                        <p class="text-xs text-pastel-muted mt-0.5">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // PRODUCT DIRECTORY & MODAL
+        function renderProducts(cat) {
+            const grid = document.getElementById('products-grid');
+            const filtered = cat === 'all' ? productsData : productsData.filter(p => p.category === cat);
+
+            grid.innerHTML = filtered.map(p => `
+                <div onclick="openProductModal(${p.id})" class="bg-white rounded-3xl p-5 border border-pastel-200 shadow-sm hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-32 rounded-2xl pink-gradient flex items-center justify-center text-4xl mb-4 group-hover:scale-105 transition-transform">
+                            ${p.image}
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${p.tagColor} mb-2 inline-block">${p.badge}</span>
+                        <h3 class="font-bold text-sm text-pastel-dark group-hover:text-pastel-accent transition-colors line-clamp-2">${p.name}</h3>
+                        <p class="text-xs text-pastel-muted mt-1 line-clamp-2">${p.shortDesc}</p>
+                    </div>
+                    <div class="pt-4 border-t border-pastel-100 mt-4 flex items-center justify-between text-xs font-bold text-pastel-accent">
+                        <span>Chi tiết thành phần</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProducts(cat) {
+            ['all', 'cleanser', 'serum', 'moisturizer', 'sunscreen'].forEach(c => {
+                const btn = document.getElementById(`pfilter-${c}`);
+                if (c === cat) {
+                    btn.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-pastel-400 text-white shadow-sm";
+                } else {
+                    btn.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-white border border-pastel-200 text-pastel-dark";
+                }
+            });
+            renderProducts(cat);
+        }
+
+        function openProductModal(id) {
+            const p = productsData.find(item => item.id === id);
+            if (!p) return;
+
+            const modal = document.getElementById('product-modal');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <div class="flex items-center gap-4 border-b border-pastel-100 pb-4">
+                    <div class="w-16 h-16 rounded-2xl pink-gradient flex items-center justify-center text-3xl">
+                        ${p.image}
+                    </div>
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${p.tagColor}">${p.badge}</span>
+                        <h3 class="font-bold text-lg text-pastel-dark mt-1">${p.name}</h3>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-xs text-pastel-dark">
+                    <div>
+                        <strong class="block text-pastel-accent uppercase text-[10px] tracking-wider mb-1">Mô Tả Chi Tiết</strong>
+                        <p class="leading-relaxed text-pastel-muted">${p.fullDesc}</p>
+                    </div>
+
+                    <div class="p-3 rounded-2xl bg-pastel-50 border border-pastel-200">
+                        <strong class="block text-pastel-dark mb-1">🧪 Thành phần chính (Key Active):</strong>
+                        <span>${p.ingredients}</span>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div class="p-3 rounded-2xl bg-emerald-50 text-emerald-900">
+                            <strong class="block font-bold mb-1">👍 Ưu điểm:</strong>
+                            <ul class="list-disc pl-4 space-y-1">
+                                ${p.pros.map(pr => `<li>${pr}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-rose-50 text-rose-900">
+                            <strong class="block font-bold mb-1">👎 Lưu ý:</strong>
+                            <ul class="list-disc pl-4 space-y-1">
+                                ${p.cons.map(cn => `<li>${cn}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+    <script src="//code.tidio.co/cgx3vuoauh1jpvtsaz6ldjrf25nsxydy.js" async></script>
+</body></html>
