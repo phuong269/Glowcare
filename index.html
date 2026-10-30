@@ -1,40 +1,198 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>GlowCare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GlowCare - Tư vấn mỹ phẩm dưỡng da</title>
 
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(
-                135deg,
-                #fff0f5,
-                #fce4ec,
-                #f3e5f5
-            );
-            color: #5c4652;
-            min-height: 100vh;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: Arial, sans-serif;
+            color: #70465a;
+            min-height: 100vh;
+
+            /* Nền hồng và hình ảnh hoa */
+            background-color: #fff0f5;
+            background-image:
+                linear-gradient(
+                    rgba(255, 240, 245, 0.62),
+                    rgba(255, 240, 245, 0.62)
+                ),
+                url("https://images.unsplash.com/photo-1490750967868-88aa4486c946");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        /* Thanh đầu trang */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 22px;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(180, 100, 130, 0.12);
+        }
+
+        header h1 {
+            color: #d66b91;
+            font-size: 35px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: #987080;
+            margin-top: 8px;
+        }
+
+        /* Phần giới thiệu */
+        .hero {
+            text-align: center;
+            padding: 90px 20px 60px;
+        }
+
+        .hero h2 {
+            font-size: 34px;
+            color: #c45d86;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* Khung nội dung */
+        .content {
+            max-width: 850px;
+            margin: 10px auto 60px;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 22px;
+            box-shadow: 0 8px 25px rgba(180, 100, 130, 0.15);
+            text-align: center;
+        }
+
+        .content h3 {
+            color: #d66b91;
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .content p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Nút hướng dẫn */
+        .chat-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #ed9fbb, #d66b91);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .chat-button:hover {
+            background: #c45d86;
+            transform: translateY(-3px);
+        }
+
+        /* Chân trang */
         footer {
             text-align: center;
-            padding: 20px;
-            background: rgba(255,255,255,0.7);
+            padding: 22px;
+            background: rgba(255, 255, 255, 0.85);
             color: #b76e8c;
-            margin-top: 40px;
+            border-top: 1px solid #f8d5e2;
+        }
+
+        /* Điện thoại */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 28px;
+            }
+
+            .hero {
+                padding: 60px 18px 40px;
+            }
+
+            .hero h2 {
+                font-size: 26px;
+            }
+
+            .content {
+                margin: 10px 15px 40px;
+                padding: 25px 18px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Nội dung website của bạn đặt ở đây -->
+    <!-- Đầu trang -->
+    <header>
+        <h1>🌸 GlowCare 🌸</h1>
+        <p>Chăm sóc làn da – Tỏa sáng vẻ đẹp tự nhiên</p>
+    </header>
 
-<footer>© 2026 GlowCare</footer>
+    <!-- Giới thiệu -->
+    <section class="hero">
+        <h2>Chào mừng đến với GlowCare!</h2>
 
-<script src="//code.tidio.co/cgx3vuoauh1jpvtsaz6ldjrf25nsxydy.js" async></script>
+        <p>
+            GlowCare là website hỗ trợ tư vấn mỹ phẩm dưỡng da,
+            giúp bạn tìm hiểu làn da, lựa chọn sản phẩm phù hợp
+            và xây dựng quy trình chăm sóc da đơn giản, hiệu quả.
+        </p>
+    </section>
+
+    <!-- Nội dung chính -->
+    <section class="content">
+        <h3>💗 Trợ lý tư vấn chăm sóc da</h3>
+
+        <p>
+            Bạn chưa biết làn da mình phù hợp với loại mỹ phẩm nào?
+            Hãy trò chuyện với chatbot GlowCare để nhận được
+            những gợi ý chăm sóc da phù hợp với nhu cầu và ngân sách.
+        </p>
+
+        <p>
+            Chatbot có thể hỗ trợ tư vấn về da dầu, da khô,
+            da hỗn hợp, da nhạy cảm và các bước dưỡng da cơ bản.
+        </p>
+
+        <a href="javascript:void(0)"
+           class="chat-button"
+           onclick="if(window.tidioChatApi) tidioChatApi.open();">
+            Bắt đầu tư vấn ngay 💬
+        </a>
+    </section>
+
+    <!-- Chân trang -->
+    <footer>
+        © 2026 GlowCare | Chăm sóc da cùng bạn 🌷
+    </footer>
+
+    <!-- Chatbot Tidio -->
+    <script src="https://code.tidio.co/cgx3vuoauh1jpvtsaz6ldjrf25nsxydy.js"
+            async>
+    </script>
 
 </body>
 </html>
