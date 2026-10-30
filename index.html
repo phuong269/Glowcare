@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlowCare - Chăm sóc da</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#fff7fa;color:#49323d}
+header{background:#fff;padding:22px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 12px #ead6df}
+.logo{font-size:27px;font-weight:bold;color:#df6795}
+nav a{margin:10px;color:#70465b;text-decoration:none}
+.hero{text-align:center;padding:85px 20px;background:linear-gradient(135deg,#f9dce8,#fff1f6)}
+.hero h1{font-size:42px;color:#bd5681}
+.hero p{font-size:18px;line-height:1.7}
+button{background:#e779a5;color:white;border:0;padding:14px 25px;border-radius:30px;cursor:pointer}
+section{padding:45px 7%;text-align:center}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+.card{background:white;padding:25px;border-radius:18px;box-shadow:0 4px 15px #eedce4}
+.card h3{color:#d46c96}
+footer{background:#523c49;color:white;text-align:center;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">🌸 GlowCare</div>
+<nav>
+<a href="#home">Trang chủ</a>
+<a href="#skin">Loại da</a>
+<a href="#ingredient">Hoạt chất</a>
+<a href="#contact">Liên hệ</a>
+</nav>
+</header>
+<div class="hero" id="home">
+<h1>Thấu Hiểu Làn Da, Rạng Rỡ Từng Ngày</h1>
+<p>Khám phá bí quyết chăm sóc da khoa học.<br>
+Lựa chọn mỹ phẩm phù hợp với làn da của bạn.</p>
+<button onclick="document.getElementById('skin').scrollIntoView()">Khám phá ngay</button>
+</div>
+<section id="skin">
+<h2>Khám phá loại da của bạn</h2>
+<div class="cards">
+<div class="card"><h3>💧 Da dầu</h3><p>Chăm sóc và cân bằng dầu thừa.</p></div>
+<div class="card"><h3>🌷 Da khô</h3><p>Bổ sung độ ẩm và nuôi dưỡng da.</p></div>
+<div class="card"><h3>✨ Da hỗn hợp</h3><p>Chăm sóc phù hợp từng vùng da.</p></div>
+<div class="card"><h3>🌸 Da nhạy cảm</h3><p>Ưu tiên sản phẩm dịu nhẹ.</p></div>
+</div>
+</section>
+<section id="ingredient">
+<h2>Tìm hiểu hoạt chất dưỡng da</h2>
+<div class="cards">
+<div class="card"><h3>Niacinamide</h3><p>Hỗ trợ hàng rào bảo vệ da.</p></div>
+<div class="card"><h3>Vitamin C</h3><p>Chống oxy hóa, hỗ trợ đều màu da.</p></div>
+<div class="card"><h3>Hyaluronic Acid</h3><p>Giúp cấp ẩm cho làn da.</p></div>
+<div class="card"><h3>Panthenol</h3><p>Hỗ trợ làm dịu và dưỡng ẩm.</p></div>
+</div>
+</section>
+<section id="contact">
+<h2>GlowCare đồng hành cùng làn da của bạn</h2>
+<p>Hãy trò chuyện với trợ lý AI để được tư vấn chăm sóc da.</p>
+</section>
+<footer>© 2026 GlowCare - Skincare Science</footer>
+</body>
+</html>
